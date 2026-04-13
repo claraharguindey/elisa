@@ -1,0 +1,195 @@
+/* bio.css — importa styles.css antes */
+
+.bio-page {
+  padding: 0 3rem 6rem;
+}
+
+/* ─── BIO ───────────────────────────────────────────────────────────────────── */
+
+.bio-section {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 4rem;
+  padding: 3rem 0 4rem;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.bio-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 62ch;
+}
+
+.bio-text p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--fg);
+}
+
+.bio-text em {
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+.bio-portrait {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+}
+
+.portrait-img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--img-bg, #e8e6e0);
+  overflow: hidden;
+}
+
+.portrait-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.portrait-caption {
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ─── CV ────────────────────────────────────────────────────────────────────── */
+
+.cv-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 2rem 0;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.cv-block {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 0 3rem;
+  padding: 2rem 0;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.cv-block:last-child {
+  border-bottom: none;
+}
+
+.cv-heading {
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+  padding-top: 0.15rem;
+}
+
+.cv-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cv-entry {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0 1.5rem;
+  padding: 0.55rem 0;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.cv-entry:last-child {
+  border-bottom: none;
+}
+
+.cv-year {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  padding-top: 0.05rem;
+}
+
+.cv-detail {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--fg);
+}
+
+/* ─── CONTACT ───────────────────────────────────────────────────────────────── */
+
+.contact-section {
+  padding: 3rem 0 2rem;
+}
+
+.contact-heading {
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-links a {
+  font-size: 0.88rem;
+  color: var(--fg);
+  text-decoration: none;
+  transition: opacity 0.15s;
+  width: fit-content;
+}
+
+.contact-links a:hover {
+  opacity: 0.5;
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .bio-page {
+    padding: 0 1.5rem 4rem;
+  }
+
+  .bio-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .bio-portrait {
+    max-width: 220px;
+  }
+
+  .cv-block {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .cv-heading {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .bio-page {
+    padding: 0 1.2rem 3rem;
+  }
+
+  .cv-entry {
+    grid-template-columns: 60px 1fr;
+    gap: 0 1rem;
+  }
+}

@@ -1,0 +1,175 @@
+/* library.css — importa styles.css antes */
+
+.library-page {
+  padding: 3rem 3rem 6rem;
+}
+
+.library-header {
+  margin-bottom: 2.5rem;
+}
+
+.library-title {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.library-count {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ─── GRID ──────────────────────────────────────────────────────────────────── */
+
+.pub-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem 1.25rem;
+}
+
+/* ─── CARD ──────────────────────────────────────────────────────────────────── */
+
+.pub-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+}
+
+.pub-img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--img-bg, #e8e6e0);
+  overflow: hidden;
+  margin-bottom: 0;
+  transition: transform 0.35s ease;
+}
+
+.pub-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.pub-info {
+  padding: 0.9rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.pub-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.pub-type {
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.15rem 0.5rem;
+  border: 0.5px solid var(--border);
+  border-radius: 999px;
+  background: var(--tag-bg);
+}
+
+.pub-year {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.pub-title {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--fg);
+}
+
+.pub-context {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.pub-link {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    color 0.15s;
+}
+
+.pub-link:hover {
+  color: var(--fg);
+}
+
+/* ─── HOVER STATE ───────────────────────────────────────────────────────────── */
+
+.pub-card:hover .pub-img {
+  transform: translateY(-4px);
+}
+
+.pub-card:hover .pub-img img {
+  transform: scale(1.03);
+}
+
+.pub-card:hover .pub-title {
+  color: var(--fg);
+}
+
+.pub-card:hover .pub-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .pub-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .library-page {
+    padding: 2rem 1.5rem 4rem;
+  }
+  .pub-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .library-page {
+    padding: 1.5rem 1.2rem 3rem;
+  }
+  .pub-grid {
+    grid-template-columns: 1fr;
+  }
+  .pub-img {
+    aspect-ratio: 4 / 3;
+  }
+  .pub-link {
+    opacity: 1;
+    transform: none;
+  }
+}

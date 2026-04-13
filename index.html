@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elisa Cuesta Fernández</title>
+<link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+
+<nav class="site-nav">
+      <a class="nav-name" href="#">Elisa Cuesta Fernández</a>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Works</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="bio.html">Bio</a></li>
+        <li><a href="bio.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+<div class="controls">
+  <div class="filter-group">
+    <span class="filter-label">Research line</span>
+    <span class="tag active" onclick="setFilter('all',this)">All</span>
+    <span class="tag" onclick="setFilter('liquid',this)">Liquid &amp; porous</span>
+    <span class="tag" onclick="setFilter('diagrams',this)">Operative diagrams</span>
+    <span class="tag" onclick="setFilter('interfaces',this)">Embodied interfaces</span>
+    <span class="tag" onclick="setFilter('making',this)">Making w/ others</span>
+  </div>
+  <div class="view-toggle">
+    <button class="vbtn active" onclick="setView('table',this)">List</button>
+    <button class="vbtn" onclick="setView('constellation',this)">Constellation</button>
+  </div>
+</div>
+
+<div id="view-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Format</th>
+        <th>Research line</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div id="view-constellation">
+  <div class="const-top">
+    <div class="legend-section">
+      <div class="legend-title">Research lines</div>
+      <div class="legend-cluster"><div class="legend-dot" style="background:#b5a99a"></div>Liquid &amp; porous</div>
+      <div class="legend-cluster"><div class="legend-dot" style="background:#8a9baa"></div>Operative diagrams</div>
+      <div class="legend-cluster"><div class="legend-dot" style="background:#a8aa8a"></div>Embodied interfaces</div>
+      <div class="legend-cluster"><div class="legend-dot" style="background:#aa8a9b"></div>Making w/ others</div>
+    </div>
+    <div class="legend-section">
+      <div class="legend-title">Formats — click to show/hide connections</div>
+      <div class="fmt-legend" id="fmt-legend"></div>
+    </div>
+  </div>
+  <svg id="constellation-svg" viewBox="0 0 900 580"></svg>
+</div>
+<script src="./script.js"></script>
+</body>
+</html>
