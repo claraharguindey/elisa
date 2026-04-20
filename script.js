@@ -194,7 +194,6 @@ function hidePreview() {
 function buildFormatFilters() {
   const group = document.getElementById("format-filters");
 
-  // ── ALL ─────────────────────
   const allTag = document.createElement("span");
   allTag.className = "tag active";
   allTag.textContent = "ALL";
@@ -202,41 +201,43 @@ function buildFormatFilters() {
 
   allTag.onclick = () => {
     activeFormats = new Set(allFormats);
-
-    document
-      .querySelectorAll("#format-filters .tag")
-      .forEach((t) => t.classList.add("active"));
-
+    document.querySelectorAll("#format-filters .tag[data-type='format']")
+      .forEach(t => t.classList.remove("active"));
+    allTag.classList.add("active");
     applyFilters();
   };
 
   group.appendChild(allTag);
 
-  function syncAllTag() {
-    const allTag = document.querySelector(
-      '#format-filters .tag[data-type="all"]',
-    );
-    if (!allTag) return;
-    allTag.classList.toggle("active", activeFormats.size === allFormats.length);
-  }
-
-  // ── FORMATOS ─────────────────
   allFormats.forEach((fmt) => {
     const tag = document.createElement("span");
-    tag.className = "tag active";
+    tag.className = "tag";
     tag.textContent = fmt;
     tag.dataset.type = "format";
 
     tag.onclick = () => {
-      if (activeFormats.has(fmt)) {
+      // Desmarcar ALL
+      allTag.classList.remove("active");
+
+      if (activeFormats.size === allFormats.length) {
+        // Primera selección individual: mostrar solo este
+        activeFormats = new Set([fmt]);
+        document.querySelectorAll("#format-filters .tag[data-type='format']")
+          .forEach(t => t.classList.remove("active"));
+        tag.classList.add("active");
+      } else if (activeFormats.has(fmt)) {
         activeFormats.delete(fmt);
         tag.classList.remove("active");
+        // Si queda vacío, volver a ALL
+        if (activeFormats.size === 0) {
+          activeFormats = new Set(allFormats);
+          allTag.classList.add("active");
+        }
       } else {
         activeFormats.add(fmt);
         tag.classList.add("active");
       }
 
-      syncAllTag();
       applyFilters();
     };
 
