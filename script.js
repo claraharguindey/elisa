@@ -1,66 +1,157 @@
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
 const projects = [
-  { id: 0,  title: "Earth Bone",                  year: "2024",    line: "diagrams",   formats: ["installation", "algorithm"] },
-  { id: 1,  title: "Filtrar un mar",               year: "2023",    line: "liquid",     formats: ["installation", "performance"] },
-  { id: 2,  title: "Possible cone factory",        year: "2022",    line: "liquid",     formats: ["installation", "audio"] },
-  { id: 3,  title: "Un Lugar Perfecto",            year: "2021–",   line: "diagrams",   formats: ["video", "installation"] },
-  { id: 4,  title: "A.I.R.",                       year: "2020–21", line: "making",     formats: ["installation", "research"] },
-  { id: 5,  title: "El lenguaje de la fuente",     year: "2023",    line: "liquid",     formats: ["installation"] },
-  { id: 6,  title: "Skeens",                       year: "2019–20", line: "interfaces", formats: ["installation", "data visualization"] },
-  { id: 7,  title: "Cartografía Crítica",          year: "2024–",   line: "making",     formats: ["research", "design"] },
-  { id: 8,  title: "Au revoir, Appendix",          year: "2021",    line: "diagrams",   formats: ["performance"] },
-  { id: 9,  title: "Cartography Choreography",     year: "2020",    line: "interfaces", formats: ["performance", "data visualization"] },
-  { id: 10, title: "Birds don't take the train",   year: "2022",    line: "making",     formats: ["workshop", "lecture"] },
-  { id: 11, title: "Deriva Metabólica",            year: "2020–",   line: "liquid",     formats: ["research", "installation"] },
+  {
+    id: 0,
+    title: "Earth Bone",
+    year: "2024",
+    line: "diagrams",
+    formats: ["installation", "algorithm"],
+    img: "",
+  },
+  {
+    id: 1,
+    title: "Filtrar un mar",
+    year: "2023",
+    line: "liquid",
+    formats: ["installation", "performance"],
+    img: "",
+  },
+  {
+    id: 2,
+    title: "Possible cone factory",
+    year: "2022",
+    line: "liquid",
+    formats: ["installation", "audio"],
+    img: "",
+  },
+  {
+    id: 3,
+    title: "Un Lugar Perfecto",
+    year: "2021–",
+    line: "diagrams",
+    formats: ["video", "installation"],
+    img: "",
+  },
+  {
+    id: 4,
+    title: "A.I.R.",
+    year: "2020–21",
+    line: "making",
+    formats: ["installation", "research"],
+    img: "",
+  },
+  {
+    id: 5,
+    title: "El lenguaje de la fuente",
+    year: "2023",
+    line: "liquid",
+    formats: ["installation"],
+    img: "",
+  },
+  {
+    id: 6,
+    title: "Skeens",
+    year: "2019–20",
+    line: "interfaces",
+    formats: ["installation", "data visualization"],
+    img: "",
+  },
+  {
+    id: 7,
+    title: "Cartografía Crítica",
+    year: "2024–",
+    line: "making",
+    formats: ["research", "design"],
+    img: "",
+  },
+  {
+    id: 8,
+    title: "Au revoir, Appendix",
+    year: "2021",
+    line: "diagrams",
+    formats: ["performance"],
+    img: "",
+  },
+  {
+    id: 9,
+    title: "Cartography Choreography",
+    year: "2020",
+    line: "interfaces",
+    formats: ["performance", "data visualization"],
+    img: "",
+  },
+  {
+    id: 10,
+    title: "Birds don't take the train",
+    year: "2022",
+    line: "making",
+    formats: ["workshop", "lecture"],
+    img: "",
+  },
+  {
+    id: 11,
+    title: "Deriva Metabólica",
+    year: "2020–",
+    line: "liquid",
+    formats: ["research", "installation"],
+    img: "",
+  },
 ];
 
-const lineLabels = {
-  liquid:     "Liquid & porous",
-  diagrams:   "Operative diagrams",
-  interfaces: "Embodied interfaces",
-  making:     "Making w/ others",
+// Líneas de investigación — color propio para las conexiones. Escalable.
+const researchLines = {
+  liquid: { label: "Liquid & porous", color: "#5DA9E9" }, // azul claro vivo
+  diagrams: { label: "Operative diagrams", color: "#C77DFF" }, // violeta luminoso
+  interfaces: { label: "Embodied interfaces", color: "#38B000" }, // verde intenso
+  making: { label: "Making w/ others", color: "#FF9F1C" }, // naranja brillante
 };
-
-const clusters = {
-  liquid:     { cx: 210, cy: 200, color: "#b5a99a", label: "Liquid & porous" },
-  diagrams:   { cx: 650, cy: 180, color: "#8a9baa", label: "Operative diagrams" },
-  interfaces: { cx: 195, cy: 440, color: "#a8aa8a", label: "Embodied interfaces" },
-  making:     { cx: 655, cy: 430, color: "#aa8a9b", label: "Making w/ others" },
-};
-
-const offsets = {
-  liquid:     [[-62,-38],[22,-68],[72,4],[-38,52],[52,52],[0,-22]],
-  diagrams:   [[-58,-22],[32,-55],[62,28],[-18,48]],
-  interfaces: [[-52,-20],[38,-40],[50,38]],
-  making:     [[-62,-20],[20,-60],[56,20],[6,54]],
-};
-
 const formatColors = {
-  "installation":       "#c8b89a",
-  "performance":        "#9aac9a",
-  "research":           "#9aabc8",
-  "data visualization": "#c89aac",
-  "video":              "#b8c89a",
-  "audio":              "#c89ab8",
-  "design":             "#aac8b8",
-  "workshop":           "#c8c09a",
-  "lecture":            "#b09ac8",
-  "algorithm":          "#9ab8c8",
+  installation: "#1d1c1c",
+  performance: "#1d1c1c",
+  research: "#1d1c1c",
+  "data visualization": "#1d1c1c",
+  video: "#1d1c1c",
+  audio: "#1d1c1c",
+  design: "#1d1c1c",
+  workshop: "#1d1c1c",
+  lecture: "#1d1c1c",
+  algorithm: "#1d1c1c",
 };
+
+const lineLabels = Object.fromEntries(
+  Object.entries(researchLines).map(([k, v]) => [k, v.label]),
+);
+
+// Posiciones gestionadas por d3.forceSimulation — no hay coordenadas fijas
 
 // ─── STATE ───────────────────────────────────────────────────────────────────
 
-const allFormats = [...new Set(projects.flatMap(p => p.formats))].sort();
-const activeFormats = new Set(allFormats);
-let currentFilter = "all";
-let currentView = "table";
-let nodePositions = {};
+const allFormats = [...new Set(projects.flatMap((p) => p.formats))].sort();
+const activeLines = new Set(Object.keys(researchLines));
+let activeFormats = new Set(allFormats);
+let currentLine = "all";
+let currentView = "gallery";
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 
 function slugify(title) {
-  return title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function isAllActive() {
+  return activeFormats.size === allFormats.length;
+}
+
+function projectVisible(p) {
+  const lineOk = currentLine === "all" || p.line === currentLine;
+
+  const formatOk = isAllActive() || p.formats.some((f) => activeFormats.has(f));
+
+  return lineOk && formatOk;
 }
 
 // ─── CURSOR IMAGE PREVIEW ────────────────────────────────────────────────────
@@ -68,331 +159,515 @@ function slugify(title) {
 const preview = document.createElement("div");
 preview.id = "row-preview";
 preview.style.cssText = [
-  "position:fixed", "pointer-events:none", "z-index:1000",
-  "width:220px", "aspect-ratio:4/3", "background:var(--img-bg,#e8e6e0)",
-  "overflow:hidden", "opacity:0", "transition:opacity 0.2s ease"
+  "position:fixed",
+  "pointer-events:none",
+  "z-index:1000",
+  "width:220px",
+  "aspect-ratio:4/3",
+  "background:var(--img-bg,#e8e6e0)",
+  "overflow:hidden",
+  "opacity:0",
+  "transition:opacity 0.2s ease",
 ].join(";");
 const previewImg = document.createElement("img");
-previewImg.style.cssText = "width:100%;height:100%;object-fit:cover;display:block;";
+previewImg.style.cssText =
+  "width:100%;height:100%;object-fit:cover;display:block;";
 preview.appendChild(previewImg);
 document.body.appendChild(preview);
 
 document.addEventListener("mousemove", (e) => {
-  preview.style.left = (e.clientX + 20) + "px";
-  preview.style.top  = (e.clientY - 60) + "px";
+  preview.style.left = e.clientX + 20 + "px";
+  preview.style.top = e.clientY - 60 + "px";
 });
+
+function showPreview(src) {
+  previewImg.style.display = src ? "block" : "none";
+  if (src) previewImg.src = src;
+  preview.style.opacity = "1";
+}
+function hidePreview() {
+  preview.style.opacity = "0";
+}
+
+// ─── FORMAT FILTERS ──────────────────────────────────────────────────────────
+
+function buildFormatFilters() {
+  const group = document.getElementById("format-filters");
+
+  // ── ALL ─────────────────────
+  const allTag = document.createElement("span");
+  allTag.className = "tag active";
+  allTag.textContent = "ALL";
+  allTag.dataset.type = "all";
+
+  allTag.onclick = () => {
+    activeFormats = new Set(allFormats);
+
+    document
+      .querySelectorAll("#format-filters .tag")
+      .forEach((t) => t.classList.add("active"));
+
+    applyFilters();
+  };
+
+  group.appendChild(allTag);
+
+  function syncAllTag() {
+    const allTag = document.querySelector(
+      '#format-filters .tag[data-type="all"]',
+    );
+    if (!allTag) return;
+    allTag.classList.toggle("active", activeFormats.size === allFormats.length);
+  }
+
+  // ── FORMATOS ─────────────────
+  allFormats.forEach((fmt) => {
+    const tag = document.createElement("span");
+    tag.className = "tag active";
+    tag.textContent = fmt;
+    tag.dataset.type = "format";
+
+    tag.onclick = () => {
+      if (activeFormats.has(fmt)) {
+        activeFormats.delete(fmt);
+        tag.classList.remove("active");
+      } else {
+        activeFormats.add(fmt);
+        tag.classList.add("active");
+      }
+
+      syncAllTag();
+      applyFilters();
+    };
+
+    group.appendChild(tag);
+  });
+}
+
+function buildLineFilters() {
+  const group = document.querySelector(".filter-group:first-child");
+  const allTag = group.querySelector('.tag[onclick*="all"]');
+  group.innerHTML = "";
+  group.appendChild(
+    document.querySelector(".filter-label") ||
+      (() => {
+        const l = document.createElement("span");
+        l.className = "filter-label";
+        l.textContent = "Research line";
+        return l;
+      })(),
+  );
+
+  const all = document.createElement("span");
+  all.className = "tag active";
+  all.textContent = "All";
+  all.onclick = () => setFilter("all", all);
+  group.appendChild(all);
+
+  Object.entries(researchLines).forEach(([key, rl]) => {
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.innerHTML = `<span class="line-dot" style="background:${rl.color}"></span>${rl.label}`;
+    tag.onclick = () => setFilter(key, tag);
+    group.appendChild(tag);
+  });
+}
+
+function applyFilters() {
+  document.querySelectorAll("#view-table tbody tr").forEach((r) => {
+    r.classList.toggle("hidden", !projectVisible(projects[+r.dataset.id]));
+  });
+  document.querySelectorAll(".gallery-card").forEach((c) => {
+    c.classList.toggle("hidden", !projectVisible(projects[+c.dataset.id]));
+  });
+  if (currentView === "constellation") buildConstellation();
+}
 
 // ─── TABLE ───────────────────────────────────────────────────────────────────
 
 function buildTable() {
   const tbody = document.querySelector("#view-table tbody");
   tbody.innerHTML = "";
-
-  projects.forEach(p => {
+  projects.forEach((p, i) => {
     const tr = document.createElement("tr");
+    tr.dataset.id = i;
     tr.dataset.lines = p.line;
-    // tr.onclick = () => location.href = `projects/${slugify(p.title)}.html`;
-    tr.onclick = () => location.href = `/detail.html`;
-
-    const imgSrc = p.img || "";
-    tr.addEventListener("mouseenter", () => {
-      previewImg.style.display = imgSrc ? "block" : "none";
-      if (imgSrc) previewImg.src = imgSrc;
-      preview.style.opacity = "1";
-    });
-    tr.addEventListener("mouseleave", () => {
-      preview.style.opacity = "0";
-    });
-
+    tr.onclick = () => (location.href = `projects/${slugify(p.title)}.html`);
+    tr.addEventListener("mouseenter", () => showPreview(p.img));
+    tr.addEventListener("mouseleave", hidePreview);
     tr.innerHTML = `
       <td class="row-title">${p.title}</td>
       <td class="row-year">${p.year}</td>
-      <td class="row-tags">${p.formats.map(f => `<span class="row-tag">${f}</span>`).join("")}</td>
-      <td class="row-line">${lineLabels[p.line]}</td>
+      <td class="row-tags">${p.formats.map((f) => `<span class="row-tag">${f}</span>`).join("")}</td>
+      <td class="row-line"><span class="line-dot" style="background:${researchLines[p.line]?.color || "#bbb"}"></span>${lineLabels[p.line]}</td>
     `;
     tbody.appendChild(tr);
   });
 }
 
-// ─── FORMAT LEGEND ───────────────────────────────────────────────────────────
+// ─── GALLERY ─────────────────────────────────────────────────────────────────
 
-function buildFmtLegend() {
-  const legend = document.getElementById("fmt-legend");
+// Aspect ratios variados por id — cuando haya imágenes reales se quitan
+const imgRatios = [
+  "16/9",
+  "3/4",
+  "1/1",
+  "4/3",
+  "3/4",
+  "16/9",
+  "4/3",
+  "3/4",
+  "1/1",
+  "3/4",
+  "4/3",
+  "16/9",
+];
+
+function buildGallery() {
+  const grid = document.getElementById("gallery-grid");
+  grid.innerHTML = "";
+  projects.forEach((p, i) => {
+    const card = document.createElement("div");
+    card.className = "gallery-card";
+    card.dataset.id = i;
+    card.dataset.lines = p.line;
+    card.onclick = () => (location.href = `projects/${slugify(p.title)}.html`);
+    card.innerHTML = `
+      <div class="gallery-img" style="aspect-ratio:${imgRatios[i % imgRatios.length]};${p.img ? `background-image:url(${p.img})` : ""}"></div>
+      <div class="gallery-overlay">
+        <div class="gallery-info">
+          <div class="gallery-meta">
+            <span class="pub-type">${p.formats[0]}</span>
+            <span class="row-year">${p.year}</span>
+          </div>
+          <div class="gallery-title">${p.title}</div>
+          <div class="gallery-line">${lineLabels[p.line]}</div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ─── LINE LEGEND ─────────────────────────────────────────────────────────────
+
+function buildLineLegend() {
+  const legend = document.getElementById("line-legend");
   legend.innerHTML = "";
-
-  allFormats.forEach(fmt => {
-    const color = formatColors[fmt] || "#bbb";
+  Object.entries(researchLines).forEach(([key, rl]) => {
     const el = document.createElement("div");
-    el.className = "fmt-tag on";
-    el.dataset.fmt = fmt;
-    el.style.background = color + "22";
-    el.style.borderColor = color + "88";
-    el.style.color = "var(--fg)";
-    el.innerHTML = `<span class="fmt-swatch" style="background:${color}"></span>${fmt}`;
-    el.addEventListener("click", () => toggleFormat(fmt, el));
+    el.className = "line-legend-item on";
+    el.dataset.line = key;
+
+    const dot = document.createElement("span");
+    dot.className = "line-dot";
+    dot.style.background = rl.color;
+
+    const lbl = document.createElement("span");
+    lbl.textContent = rl.label;
+
+    el.appendChild(dot);
+    el.appendChild(lbl);
+    el.addEventListener("click", () => toggleLine(key, el));
     legend.appendChild(el);
   });
 }
 
-function toggleFormat(fmt, el) {
-  if (activeFormats.has(fmt)) {
-    activeFormats.delete(fmt);
+function toggleLine(key, el) {
+  if (activeLines.has(key)) {
+    activeLines.delete(key);
     el.classList.remove("on");
     el.classList.add("off");
   } else {
-    activeFormats.add(fmt);
+    activeLines.add(key);
     el.classList.remove("off");
     el.classList.add("on");
   }
   const svg = document.getElementById("constellation-svg");
-  const cls = `fmt-${fmt.replace(/\s+/g, "-")}`;
-  svg.querySelectorAll("." + cls).forEach(l => {
-    l.style.display = activeFormats.has(fmt) ? "" : "none";
+  svg.querySelectorAll(`[data-research-line="${key}"]`).forEach((g) => {
+    g.style.display = activeLines.has(key) ? "" : "none";
+  });
+}
+
+function buildFmtLegend() {
+  const legend = document.getElementById("fmt-legend");
+  legend.innerHTML = "";
+  allFormats.forEach((fmt) => {
+    const color = formatColors[fmt] || "#bbb";
+    const el = document.createElement("div");
+    el.className = "fmt-tag";
+    el.innerHTML = `<span class="fmt-swatch" style="background:${color}"></span>${fmt}`;
+    legend.appendChild(el);
   });
 }
 
 // ─── CONSTELLATION ───────────────────────────────────────────────────────────
+// D3 force simulation — los nodos se distribuyen solos, escalable sin coords fijas
 
-function buildConstellation(filter) {
-  const svg = document.getElementById("constellation-svg");
-  svg.innerHTML = "";
-  const ns = "http://www.w3.org/2000/svg";
-  nodePositions = {};
+let simulation = null;
 
-  const visible = projects.filter(p => filter === "all" || p.line === filter);
+function buildConstellation() {
+  if (typeof d3 === "undefined") {
+    console.warn("D3 no cargado");
+    return;
+  }
+
+  const container = document.getElementById("view-constellation");
+  const W = container.clientWidth || window.innerWidth;
+  const H = window.innerHeight - container.getBoundingClientRect().top - 16;
+
+  const svgEl = document.getElementById("constellation-svg");
+  svgEl.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svgEl.setAttribute("width", W);
+  svgEl.setAttribute("height", H);
+  svgEl.style.display = "block";
+
+  if (simulation) simulation.stop();
+  const svg = d3.select("#constellation-svg");
+  svg.selectAll("*").remove();
+
+  const visible = projects.filter((p) => projectVisible(p));
+
+  // Construir links
+  const links = [];
   const grouped = {};
-  visible.forEach(p => {
+  visible.forEach((p) => {
     if (!grouped[p.line]) grouped[p.line] = [];
     grouped[p.line].push(p);
   });
 
+  // Links de línea — conectan proyectos de la misma línea (fuerza fuerte)
   Object.entries(grouped).forEach(([line, projs]) => {
-    const cl = clusters[line];
-    const offs = offsets[line] || [];
-    projs.forEach((p, i) => {
-      const off = offs[i] || [Math.cos(i * 1.4) * 65, Math.sin(i * 1.4) * 65];
-      nodePositions[p.id] = { x: cl.cx + off[0], y: cl.cy + off[1], line };
-    });
-  });
-
-  let delay = 0;
-  const D = 80;
-
-  // Layer 0: cross-cluster faint lines
-  [
-    ["liquid", "diagrams"], ["liquid", "interfaces"],
-    ["diagrams", "making"], ["interfaces", "making"],
-    ["liquid", "making"],   ["diagrams", "interfaces"],
-  ].forEach(([a, b]) => {
-    const ca = clusters[a], cb = clusters[b];
-    if (filter !== "all" && a !== filter && b !== filter) return;
-    const l = document.createElementNS(ns, "line");
-    l.setAttribute("x1", ca.cx); l.setAttribute("y1", ca.cy);
-    l.setAttribute("x2", cb.cx); l.setAttribute("y2", cb.cy);
-    l.setAttribute("stroke", "#dddbd3");
-    l.setAttribute("stroke-width", "0.5");
-    l.setAttribute("stroke-dasharray", "1 8");
-    l.classList.add("anim-ring");
-    l.style.animationDelay = delay + "ms";
-    l.style.animationFillMode = "forwards";
-    svg.appendChild(l);
-  });
-  delay += D;
-
-  // Layer 1: cluster rings + labels
-  Object.entries(clusters).forEach(([key, cl]) => {
-    if (filter !== "all" && key !== filter) return;
-
-    const ring = document.createElementNS(ns, "circle");
-    ring.setAttribute("cx", cl.cx); ring.setAttribute("cy", cl.cy);
-    ring.setAttribute("r", "102");
-    ring.setAttribute("fill", "none");
-    ring.setAttribute("stroke", cl.color);
-    ring.setAttribute("stroke-width", "0.5");
-    ring.setAttribute("stroke-dasharray", "2 5");
-    ring.classList.add("anim-ring");
-    ring.style.animationDelay = delay + "ms";
-    ring.style.animationFillMode = "forwards";
-    svg.appendChild(ring);
-
-    const lbl = document.createElementNS(ns, "text");
-    lbl.setAttribute("x", cl.cx); lbl.setAttribute("y", cl.cy - 112);
-    lbl.setAttribute("text-anchor", "middle");
-    lbl.setAttribute("font-family", "var(--sans)");
-    lbl.setAttribute("font-size", "9");
-    lbl.setAttribute("letter-spacing", "0.1em");
-    lbl.setAttribute("fill", "#888880");
-    lbl.classList.add("anim-ring");
-    lbl.style.animationDelay = delay + 40 + "ms";
-    lbl.style.animationFillMode = "forwards";
-    lbl.textContent = cl.label.toUpperCase();
-    svg.appendChild(lbl);
-  });
-  delay += D;
-
-  // Layer 2: spokes
-  Object.entries(grouped).forEach(([line, projs]) => {
-    const cl = clusters[line];
-    projs.forEach((p, i) => {
-      const pos = nodePositions[p.id]; if (!pos) return;
-      const spoke = document.createElementNS(ns, "line");
-      spoke.setAttribute("x1", cl.cx); spoke.setAttribute("y1", cl.cy);
-      spoke.setAttribute("x2", pos.x); spoke.setAttribute("y2", pos.y);
-      spoke.setAttribute("stroke", cl.color);
-      spoke.setAttribute("stroke-width", "0.5");
-      spoke.classList.add("anim-spoke");
-      spoke.style.animationDelay = delay + i * 25 + "ms";
-      spoke.style.animationFillMode = "forwards";
-      svg.appendChild(spoke);
-    });
-  });
-  delay += D * 1.5;
-
-  // Layer 3: format connection lines
-  const formatLinks = {};
-  visible.forEach(p => p.formats.forEach(fmt => {
-    if (!formatLinks[fmt]) formatLinks[fmt] = [];
-    formatLinks[fmt].push(p.id);
-  }));
-
-  let fmtDelay = delay;
-  Object.entries(formatLinks).forEach(([fmt, ids]) => {
-    if (ids.length < 2) return;
-    const color = formatColors[fmt] || "#bbb";
-    const isActive = activeFormats.has(fmt);
-    for (let i = 0; i < ids.length; i++) {
-      for (let j = i + 1; j < ids.length; j++) {
-        const a = nodePositions[ids[i]], b = nodePositions[ids[j]];
-        if (!a || !b) continue;
-        const mx = (a.x + b.x) / 2 + (Math.random() - 0.5) * 18;
-        const my = (a.y + b.y) / 2 + (Math.random() - 0.5) * 18;
-        const path = document.createElementNS(ns, "path");
-        path.setAttribute("d", `M${a.x},${a.y} Q${mx},${my} ${b.x},${b.y}`);
-        path.setAttribute("fill", "none");
-        path.setAttribute("stroke", color);
-        path.setAttribute("stroke-width", "0.8");
-        path.setAttribute("stroke-dasharray", "3 5");
-        path.setAttribute("class", `fmt-line fmt-${fmt.replace(/\s+/g, "-")}`);
-        path.classList.add("anim-fmt");
-        path.style.animationDelay = fmtDelay + "ms";
-        path.style.animationFillMode = "forwards";
-        path.style.display = isActive ? "" : "none";
-        fmtDelay += 12;
-        svg.appendChild(path);
+    for (let i = 0; i < projs.length; i++) {
+      for (let j = i + 1; j < projs.length; j++) {
+        links.push({
+          source: projs[i].id,
+          target: projs[j].id,
+          line,
+          type: "line",
+        });
       }
     }
   });
-  delay = fmtDelay + D;
 
-  // Layer 4: nodes
-  let nodeDelay = delay;
-  Object.entries(grouped).forEach(([line, projs]) => {
-    const cl = clusters[line];
-    projs.forEach((p, i) => {
-      const pos = nodePositions[p.id]; if (!pos) return;
-      const ng = document.createElementNS(ns, "g");
-      ng.style.cursor = "pointer";
-      ng.classList.add("anim-node");
-      ng.style.animationDelay = nodeDelay + i * 35 + "ms";
-      ng.style.animationFillMode = "forwards";
-
-      const circle = document.createElementNS(ns, "circle");
-      circle.setAttribute("cx", pos.x); circle.setAttribute("cy", pos.y);
-      circle.setAttribute("r", "4.5");
-      circle.setAttribute("fill", cl.color);
-      circle.setAttribute("stroke", "#f9f8f4");
-      circle.setAttribute("stroke-width", "1.5");
-      circle.style.transition = "r .2s";
-
-      const labelX = pos.x > 450 ? pos.x - 10 : pos.x + 10;
-      const anchor  = pos.x > 450 ? "end" : "start";
-
-      const txt = document.createElementNS(ns, "text");
-      txt.setAttribute("x", labelX); txt.setAttribute("y", pos.y + 4);
-      txt.setAttribute("text-anchor", anchor);
-      txt.setAttribute("font-family", "'DM Serif Display', Georgia, serif");
-      txt.setAttribute("font-size", "12");
-      txt.setAttribute("font-style", "italic");
-      txt.setAttribute("fill", "#1a1a18");
-      txt.setAttribute("opacity", "0");
-      txt.style.transition = "opacity .2s";
-      txt.style.pointerEvents = "none";
-      txt.textContent = p.title;
-
-      const yr = document.createElementNS(ns, "text");
-      yr.setAttribute("x", labelX); yr.setAttribute("y", pos.y + 17);
-      yr.setAttribute("text-anchor", anchor);
-      yr.setAttribute("font-family", "'DM Sans', system-ui, sans-serif");
-      yr.setAttribute("font-size", "9");
-      yr.setAttribute("fill", "#888880");
-      yr.setAttribute("opacity", "0");
-      yr.style.transition = "opacity .2s";
-      yr.style.pointerEvents = "none";
-      yr.textContent = p.year;
-
-      ng.addEventListener("mouseenter", () => {
-        circle.setAttribute("r", "7");
-        txt.setAttribute("opacity", "1");
-        yr.setAttribute("opacity", "1");
-        svg.querySelectorAll(".fmt-line").forEach(l => {
-          if (l.style.display !== "none") l.setAttribute("opacity", "0.1");
-        });
-        const fmts = p.formats.map(f => `.fmt-${f.replace(/\s+/g, "-")}`).join(",");
-        svg.querySelectorAll(fmts).forEach(l => {
-          if (l.style.display !== "none") l.setAttribute("opacity", "1");
-        });
-      });
-
-      ng.addEventListener("mouseleave", () => {
-        circle.setAttribute("r", "4.5");
-        txt.setAttribute("opacity", "0");
-        yr.setAttribute("opacity", "0");
-        svg.querySelectorAll(".fmt-line").forEach(l => {
-          if (l.style.display !== "none") l.setAttribute("opacity", "0.6");
-        });
-      });
-
-      ng.addEventListener("click", () => {
-        location.href = `projects/${slugify(p.title)}.html`;
-      });
-
-      ng.appendChild(circle); ng.appendChild(txt); ng.appendChild(yr);
-      svg.appendChild(ng);
+  // Links de formato — conectan proyectos de distintas líneas que comparten formato (fuerza débil)
+  const formatMap = {};
+  visible.forEach((p) => {
+    p.formats.forEach((fmt) => {
+      if (!formatMap[fmt]) formatMap[fmt] = [];
+      formatMap[fmt].push(p);
     });
-    nodeDelay += 40;
   });
+  Object.entries(formatMap).forEach(([fmt, projs]) => {
+    for (let i = 0; i < projs.length; i++) {
+      for (let j = i + 1; j < projs.length; j++) {
+        if (projs[i].line !== projs[j].line) {
+          links.push({
+            source: projs[i].id,
+            target: projs[j].id,
+            line: "format",
+            type: "format",
+            fmt,
+          });
+        }
+      }
+    }
+  });
+
+  // Nodos con posición inicial aleatoria centrada
+  const nodes = visible.map((p) => ({
+    id: p.id,
+    title: p.title,
+    year: p.year,
+    line: p.line,
+    formats: p.formats,
+    x: W / 2 + (Math.random() - 0.5) * 200,
+    y: H / 2 + (Math.random() - 0.5) * 200,
+  }));
+  const nodeById = Object.fromEntries(nodes.map((n) => [n.id, n]));
+
+  // Capa de links de formato (puentes entre líneas) — siempre visible, muy tenue
+  const formatLinkG = svg.append("g").attr("class", "format-links");
+  const formatLinkSel = formatLinkG
+    .selectAll("line")
+    .data(links.filter((l) => l.type === "format"))
+    .enter()
+    .append("line")
+    .attr("stroke", "#0a0a0a")
+    .attr("stroke-width", 0.4)
+    .attr("opacity", 0.35)
+    .attr("stroke-dasharray", "2 4");
+
+  // Capas de links de línea — una por línea para poder activar/desactivar
+  const linkGroups = {};
+  Object.keys(researchLines).forEach((line) => {
+    const g = svg
+      .append("g")
+      .attr("data-research-line", line)
+      .style("display", activeLines.has(line) ? "" : "none");
+    linkGroups[line] = g;
+  });
+
+  const linkSels = {};
+  Object.entries(researchLines).forEach(([line, rl]) => {
+    linkSels[line] = linkGroups[line]
+      .selectAll("line")
+      .data(links.filter((l) => l.line === line))
+      .enter()
+      .append("line")
+      .attr("stroke", rl.color)
+      .attr("stroke-width", 0.8)
+      .attr("opacity", 0.55);
+  });
+
+  // Capa de nodos (encima de todos los links)
+  const nodeG = svg.append("g");
+
+  const nodeEls = nodeG
+    .selectAll("g.node")
+    .data(nodes)
+    .enter()
+    .append("g")
+    .attr("class", "node")
+    .style("cursor", "pointer")
+    .on("click", (e, d) => {
+      location.href = `projects/${slugify(d.title)}.html`;
+    });
+
+  nodeEls
+    .append("circle")
+    .attr("r", 5)
+    .attr("fill", (d) => formatColors[d.formats[0]] || "#bbb")
+    .attr("stroke", "#f9f8f4")
+    .attr("stroke-width", 1.5)
+    .style("transition", "r .2s");
+
+  const labelG = nodeEls
+    .append("g")
+    .attr("class", "node-label")
+    .style("opacity", 0)
+    .style("pointer-events", "none");
+
+  labelG
+    .append("text")
+    .text((d) => d.title)
+    .attr("font-family", "'DM Serif Display', Georgia, serif")
+    .attr("font-size", 12)
+    .attr("font-style", "italic")
+    .attr("fill", "#1a1a18")
+    .attr("dy", 4);
+
+  labelG
+    .append("text")
+    .text((d) => d.year)
+    .attr("font-family", "'DM Sans', system-ui, sans-serif")
+    .attr("font-size", 9)
+    .attr("fill", "#888880")
+    .attr("dy", 17);
+
+  nodeEls
+    .on("mouseenter", function () {
+      d3.select(this).select("circle").attr("r", 7);
+      d3.select(this).select(".node-label").style("opacity", 1);
+    })
+    .on("mouseleave", function () {
+      d3.select(this).select("circle").attr("r", 5);
+      d3.select(this).select(".node-label").style("opacity", 0);
+    });
+
+  // Simulación de fuerzas
+  simulation = d3
+    .forceSimulation(nodes)
+    .force(
+      "link",
+      d3
+        .forceLink(links)
+        .id((d) => d.id)
+        .distance((d) => (d.type === "format" ? W * 0.35 : W * 0.22))
+        .strength((d) => (d.type === "format" ? 0.03 : 0.15)),
+    )
+    .force("charge", d3.forceManyBody().strength(-W * 0.6))
+    .force("center", d3.forceCenter(W / 2, H / 2).strength(0.04))
+    .force("collision", d3.forceCollide(40))
+    .force("bounds", () => {
+      nodes.forEach((n) => {
+        n.x = Math.max(60, Math.min(W - 60, n.x));
+        n.y = Math.max(40, Math.min(H - 40, n.y));
+      });
+    })
+    .on("tick", () => {
+      // Actualizar posición de links de formato
+      formatLinkSel
+        .attr("x1", (d) => nodeById[d.source.id ?? d.source]?.x ?? 0)
+        .attr("y1", (d) => nodeById[d.source.id ?? d.source]?.y ?? 0)
+        .attr("x2", (d) => nodeById[d.target.id ?? d.target]?.x ?? 0)
+        .attr("y2", (d) => nodeById[d.target.id ?? d.target]?.y ?? 0);
+
+      // Actualizar posición de links de línea
+      Object.entries(linkSels).forEach(([line, sel]) => {
+        sel
+          .attr("x1", (d) => nodeById[d.source.id ?? d.source]?.x ?? 0)
+          .attr("y1", (d) => nodeById[d.source.id ?? d.source]?.y ?? 0)
+          .attr("x2", (d) => nodeById[d.target.id ?? d.target]?.x ?? 0)
+          .attr("y2", (d) => nodeById[d.target.id ?? d.target]?.y ?? 0);
+      });
+
+      // Actualizar posición de nodos
+      nodeEls.attr("transform", (d) => {
+        const lx = d.x > W / 2 ? -10 : 10;
+        const anchor = d.x > W / 2 ? "end" : "start";
+        d3.select(nodeEls.nodes()[nodes.indexOf(d)])
+          .select(".node-label")
+          .attr("transform", `translate(${lx}, 0)`)
+          .selectAll("text")
+          .attr("text-anchor", anchor);
+        return `translate(${d.x},${d.y})`;
+      });
+    });
+
+  // Redibujar al cambiar tamaño
+  window.addEventListener(
+    "resize",
+    () => {
+      if (
+        document.getElementById("view-constellation").style.display !== "none"
+      ) {
+        buildConstellation();
+      }
+    },
+    { once: true },
+  );
 }
 
 // ─── FILTERS & VIEW TOGGLE ───────────────────────────────────────────────────
 
 function setFilter(filter, el) {
-  currentFilter = filter;
-  document.querySelectorAll(".tag").forEach(t => t.classList.remove("active"));
+  currentLine = filter;
+  document
+    .querySelectorAll(".filter-group:first-child .tag")
+    .forEach((t) => t.classList.remove("active"));
   el.classList.add("active");
-  document.querySelectorAll("#view-table tbody tr").forEach(r => {
-    if (filter === "all" || r.dataset.lines === filter) r.classList.remove("hidden");
-    else r.classList.add("hidden");
-  });
-  if (currentView === "constellation") buildConstellation(filter);
+  applyFilters();
 }
 
 function setView(view, el) {
   currentView = view;
-  document.querySelectorAll(".vbtn").forEach(b => b.classList.remove("active"));
+  document
+    .querySelectorAll(".vbtn")
+    .forEach((b) => b.classList.remove("active"));
   el.classList.add("active");
-  const tableEl = document.getElementById("view-table");
-  const constEl = document.getElementById("view-constellation");
-  if (view === "table") {
-    tableEl.classList.remove("hidden");
-    constEl.style.display = "none";
-  } else {
-    tableEl.classList.add("hidden");
-    constEl.style.display = "block";
-    buildConstellation(currentFilter);
-  }
+  document.getElementById("view-table").style.display =
+    view === "table" ? "block" : "none";
+  document.getElementById("view-gallery").style.display =
+    view === "gallery" ? "block" : "none";
+  document.getElementById("view-constellation").style.display =
+    view === "constellation" ? "block" : "none";
+  if (view === "constellation") buildConstellation();
 }
 
 // ─── INIT ────────────────────────────────────────────────────────────────────
 
 buildTable();
-buildFmtLegend();
+buildGallery();
+buildFormatFilters();
+buildLineFilters();
