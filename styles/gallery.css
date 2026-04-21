@@ -1,55 +1,50 @@
-/* gallery.css */
-
 #view-gallery {
   padding: 0 3rem 4rem;
 }
 
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: auto;
-  gap: 4px;
+  position: relative;
 }
 
 .gallery-card {
+  width: calc(20% - 1.2rem);
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  display: block;
+  margin-bottom: 1.5rem;
 }
 
-.gallery-card.hidden { display: none; }
-
-/* Algunos proyectos ocupan más espacio — variedad visual */
-.gallery-card:nth-child(3)  { grid-column: span 1; }
-.gallery-card:nth-child(5)  { grid-column: span 2; }
-.gallery-card:nth-child(9)  { grid-column: span 2; }
-.gallery-card:nth-child(11) { grid-row: span 2; }
+.gallery-card.hidden {
+  display: none;
+}
 
 .gallery-img {
   width: 100%;
-  height: 100%;
-  min-height: 180px;
-  background: var(--img-bg, #e8e6e0);
+  display: block;
   background-size: cover;
   background-position: center;
-  display: block;
+  background-color: var(--img-bg, #e8e6e0);
   transition: transform 0.4s ease;
+  /* la altura viene del aspect-ratio inline */
 }
 
-.gallery-card:hover .gallery-img { transform: scale(1.02); }
+.gallery-card:hover .gallery-img {
+  transform: scale(1.02);
+}
 
 .gallery-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(249,248,244,0);
+  background: rgba(249, 248, 244, 0);
   transition: background 0.3s ease;
   display: flex;
   align-items: flex-end;
   padding: 1rem;
 }
 
-.gallery-card:hover .gallery-overlay { background: rgba(249,248,244,0.88); }
+.gallery-card:hover .gallery-overlay {
+  background: rgba(249, 248, 244, 0.88);
+}
 
 .gallery-info {
   opacity: 0;
@@ -57,7 +52,10 @@
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.gallery-card:hover .gallery-info { opacity: 1; transform: translateY(0); }
+.gallery-card:hover .gallery-info {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .gallery-meta {
   display: flex;
@@ -76,10 +74,26 @@
   margin-bottom: 0.15rem;
 }
 
-.gallery-line { font-size: 0.68rem; color: var(--muted); }
+.gallery-line {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
 
-/* Constellation legend */
-.line-legend { display: flex; flex-direction: column; gap: 0.4rem; }
+.line-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+
+.line-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
 
 .line-legend-item {
   display: flex;
@@ -94,8 +108,10 @@
   transition: opacity 0.15s;
 }
 
-.line-legend-item.off { opacity: 0.3; text-decoration: line-through; }
-.line-legend-item svg { flex-shrink: 0; }
+.line-legend-item.off {
+  opacity: 0.3;
+  text-decoration: line-through;
+}
 
 .fmt-tag {
   font-size: 0.65rem;
@@ -111,50 +127,22 @@
   color: var(--muted);
 }
 
-@media (max-width: 900px) {
-  #view-gallery { padding: 0 1.5rem 3rem; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-card:nth-child(5),
-  .gallery-card:nth-child(9) { grid-column: span 1; }
-  .gallery-card:nth-child(11) { grid-row: span 1; }
-}
-
-@media (max-width: 480px) {
-  #view-gallery { padding: 0 1.2rem 3rem; }
-  .gallery-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
-}
-
-/* dot de color para filtros de línea y leyenda */
-.line-dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  vertical-align: middle;
-  margin-right: 2px;
-}
-
-.line-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--muted);
-  cursor: pointer;
-  user-select: none;
-  transition: opacity 0.15s;
-}
-.line-legend-item.off { opacity: 0.3; text-decoration: line-through; }
-
-/* constellation fullscreen */
 #view-constellation {
   padding: 0 !important;
   margin: 0;
 }
+
 #constellation-svg {
   display: block;
   width: 100%;
+}
+
+@media (max-width: 900px) {
+  #view-gallery { padding: 0 1.5rem 3rem; }
+  .gallery-card { width: calc(33.333% - 1rem); }
+}
+
+@media (max-width: 480px) {
+  #view-gallery { padding: 0 1.2rem 3rem; }
+  .gallery-card { width: calc(50% - 0.5rem); }
 }
